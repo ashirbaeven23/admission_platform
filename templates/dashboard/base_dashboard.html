@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="min-h-screen bg-slate-100">
+
+    <div class="flex">
+
+        <aside class="w-[320px] min-h-screen bg-white shadow-2xl p-8 hidden lg:block">
+
+            <div class="mb-12">
+
+                <div class="text-4xl font-black text-blue-700 mb-3">
+
+                    KMEPT CRM
+
+                </div>
+
+                <div class="text-slate-500 text-lg">
+
+                    Admission Management System
+
+                </div>
+
+            </div>
+
+            <nav class="space-y-3">
+
+                <a
+                    href="/dashboard/"
+                    class="flex items-center gap-4 px-6 py-4 rounded-2xl hover:bg-blue-50 font-bold transition"
+                >
+
+                    🏠
+
+                    <span>
+                        Dashboard
+                    </span>
+
+                </a>
+
+                <a
+                    href="/dashboard/applications/"
+                    class="flex items-center gap-4 px-6 py-4 rounded-2xl hover:bg-blue-50 font-bold transition"
+                >
+
+                    📄
+
+                    <span>
+                        Заявления
+                    </span>
+
+                </a>
+
+                <a
+                    href="/dashboard/applicants/"
+                    class="flex items-center gap-4 px-6 py-4 rounded-2xl hover:bg-blue-50 font-bold transition"
+                >
+
+                    👨‍🎓
+
+                    <span>
+                        Абитуриенты
+                    </span>
+
+                </a>
+
+                <a
+                    href="/dashboard/statistics/"
+                    class="flex items-center gap-4 px-6 py-4 rounded-2xl hover:bg-blue-50 font-bold transition"
+                >
+
+                    📈
+
+                    <span>
+                        Статистика
+                    </span>
+
+                </a>
+
+                <a
+                    href="/dashboard/ranking/"
+                    class="flex items-center gap-4 px-6 py-4 rounded-2xl hover:bg-blue-50 font-bold transition"
+                >
+
+                    🏆
+
+                    <span>
+                        Рейтинг
+                    </span>
+
+                </a>
+
+                <a
+                    href="/dashboard/kanban/"
+                    class="flex items-center gap-4 px-6 py-4 rounded-2xl hover:bg-blue-50 font-bold transition"
+                >
+
+                    📋
+
+                    <span>
+                        Kanban
+                    </span>
+
+                </a>
+
+                <a
+                    href="/dashboard/export/excel/"
+                    class="flex items-center gap-4 px-6 py-4 rounded-2xl hover:bg-blue-50 font-bold transition"
+                >
+
+                    📊
+
+                    <span>
+                        Excel Export
+                    </span>
+
+                </a>
+
+                <a
+                    href="/dashboard/enrollment-order/"
+                    class="flex items-center gap-4 px-6 py-4 rounded-2xl hover:bg-blue-50 font-bold transition"
+                >
+
+                    📄
+
+                    <span>
+                        Приказ о зачислении
+                    </span>
+
+                </a>
+
+                <a
+                    href="{% url 'accounts:logout' %}"
+                    class="flex items-center gap-4 px-6 py-4 rounded-2xl hover:bg-red-50 text-red-600 font-bold transition"
+                >
+
+                    🚪
+
+                    <span>
+                        Выйти
+                    </span>
+
+                </a>
+
+            </nav>
+
+            <div class="mt-16">
+
+                <div class="bg-gradient-to-r from-blue-700 to-indigo-800 rounded-[32px] p-8 text-white">
+
+                    <div class="text-3xl mb-4">
+                        🎓
+                    </div>
+
+                    <div class="text-2xl font-black mb-4">
+
+                        KMEPT 2026
+
+                    </div>
+
+                    <p class="text-blue-100 leading-relaxed">
+
+                        Современная admission
+                        CRM система для управления
+                        приемной кампанией.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+        <main class="flex-1 p-8 lg:p-14">
+
+            {% block dashboard_content %}
+            {% endblock %}
+
+        </main>
+
+    </div>
+
+</section>
+
+{% endblock %}

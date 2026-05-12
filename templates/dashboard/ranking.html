@@ -1,0 +1,148 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block dashboard_content %}
+
+<div class="mb-12">
+
+    <h1 class="text-6xl font-black mb-4">
+
+        Конкурсный рейтинг
+
+    </h1>
+
+    <p class="text-2xl text-slate-500">
+
+        Автоматический рейтинг абитуриентов
+
+    </p>
+
+</div>
+
+<div class="bg-white rounded-[40px] shadow-xl overflow-hidden">
+
+    <table class="w-full">
+
+        <thead class="bg-slate-100">
+
+            <tr>
+
+                <th class="p-6 text-left">
+                    Место
+                </th>
+
+                <th class="p-6 text-left">
+                    Абитуриент
+                </th>
+
+                <th class="p-6 text-left">
+                    Специальность
+                </th>
+
+                <th class="p-6 text-left">
+                    GPA
+                </th>
+
+                <th class="p-6 text-left">
+                    Экзамен
+                </th>
+
+                <th class="p-6 text-left">
+                    Total
+                </th>
+
+                <th class="p-6 text-left">
+                    Бюджет
+                </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for app in applications %}
+
+                <tr class="border-t border-slate-100">
+
+                    <td class="p-6">
+
+                        <div class="text-3xl font-black text-blue-600">
+
+                            #{{ app.ranking_position }}
+
+                        </div>
+
+                    </td>
+
+                    <td class="p-6">
+
+                        <div class="font-black text-xl">
+
+                            {{ app.applicant.last_name }}
+                            {{ app.applicant.first_name }}
+
+                        </div>
+
+                    </td>
+
+                    <td class="p-6 font-bold">
+
+                        {{ app.speciality.title }}
+
+                    </td>
+
+                    <td class="p-6">
+
+                        {{ app.applicant.gpa }}
+
+                    </td>
+
+                    <td class="p-6">
+
+                        {{ app.exam_score }}
+
+                    </td>
+
+                    <td class="p-6">
+
+                        <div class="text-2xl font-black">
+
+                            {{ app.total_score }}
+
+                        </div>
+
+                    </td>
+
+                    <td class="p-6">
+
+                        {% if app.is_budget %}
+
+                            <div class="bg-green-100 text-green-700 px-5 py-2 rounded-xl inline-flex font-black">
+
+                                БЮДЖЕТ
+
+                            </div>
+
+                        {% else %}
+
+                            <div class="bg-orange-100 text-orange-700 px-5 py-2 rounded-xl inline-flex font-black">
+
+                                ПЛАТНОЕ
+
+                            </div>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

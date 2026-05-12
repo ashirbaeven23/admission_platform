@@ -1,0 +1,141 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block dashboard_content %}
+
+<div class="flex items-center justify-between mb-12">
+
+    <div>
+
+        <h1 class="text-5xl font-black mb-3">
+
+            Абитуриенты
+
+        </h1>
+
+        <p class="text-xl text-slate-500">
+
+            Список всех абитуриентов системы
+
+        </p>
+
+    </div>
+
+</div>
+
+<div class="bg-white rounded-[32px] shadow-lg overflow-hidden">
+
+    <table class="w-full">
+
+        <thead class="bg-slate-100">
+
+            <tr>
+
+                <th class="p-6 text-left">
+                    Абитуриент
+                </th>
+
+                <th class="p-6 text-left">
+                    Телефон
+                </th>
+
+                <th class="p-6 text-left">
+                    Школа
+                </th>
+
+                <th class="p-6 text-left">
+                    GPA
+                </th>
+
+                <th class="p-6 text-left">
+                    Заявлений
+                </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for applicant in applicants %}
+
+                <tr class="border-t border-slate-100">
+
+                    <td class="p-6">
+
+                        <div>
+
+                            <div class="font-black text-xl">
+
+                                {{ applicant.last_name }}
+                                {{ applicant.first_name }}
+
+                            </div>
+
+                            <div class="text-slate-500">
+
+                                {{ applicant.user.username }}
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+                    <td class="p-6">
+
+                        {{ applicant.phone }}
+
+                    </td>
+
+                    <td class="p-6">
+
+                        {{ applicant.school_name }}
+
+                    </td>
+
+                    <td class="p-6">
+
+                        <div class="text-2xl font-black text-blue-600">
+
+                            {{ applicant.gpa }}
+
+                        </div>
+
+                    </td>
+
+                    <td class="p-6">
+
+                        <div class="bg-blue-100 text-blue-700 inline-flex px-5 py-2 rounded-xl font-bold">
+
+                            {{ applicant.application_set.count }}
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+            {% empty %}
+
+                <tr>
+
+                    <td
+                        colspan="5"
+                        class="text-center py-20 text-slate-500"
+                    >
+
+                        Нет абитуриентов
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

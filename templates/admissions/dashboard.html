@@ -1,0 +1,356 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Личный кабинет
+{% endblock %}
+
+{% block content %}
+
+<section class="py-20 bg-slate-100 min-h-screen">
+
+    <div class="max-w-7xl mx-auto px-4">
+
+        <div class="flex items-center justify-between mb-12">
+
+            <div>
+
+                <h1 class="text-6xl font-black mb-4">
+
+                    Личный кабинет
+
+                </h1>
+
+                <p class="text-2xl text-slate-500">
+
+                    Добро пожаловать,
+                    {{ request.user.username }}
+
+                </p>
+
+            </div>
+
+            <a
+                href="/admissions/apply/"
+                class="bg-blue-600 text-white px-8 py-5 rounded-2xl text-lg font-black"
+            >
+                Подать заявление
+            </a>
+
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8 mb-10">
+
+            <div class="bg-white rounded-[32px] p-10 shadow-lg">
+
+                <div class="text-slate-500 mb-3">
+                    Заявлений
+                </div>
+
+                <div class="text-6xl font-black text-blue-600">
+
+                    {{ total_applications }}
+
+                </div>
+
+            </div>
+
+            <div class="bg-white rounded-[32px] p-10 shadow-lg">
+
+                <div class="text-slate-500 mb-3">
+                    Одобрено
+                </div>
+
+                <div class="text-6xl font-black text-green-600">
+
+                    {{ approved_count }}
+
+                </div>
+
+            </div>
+
+            <div class="bg-white rounded-[32px] p-10 shadow-lg">
+
+                <div class="text-slate-500 mb-3">
+                    Зачислен
+                </div>
+
+                <div class="text-6xl font-black text-indigo-600">
+
+                    {{ enrolled_count }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-10">
+
+            <div class="lg:col-span-2">
+
+                <div class="bg-white rounded-[32px] shadow-lg p-10 mb-10">
+
+                    <div class="flex items-center justify-between mb-8">
+
+                        <h2 class="text-3xl font-black">
+
+                            Мои заявления
+
+                        </h2>
+
+                        <a
+                            href="/admissions/my-applications/"
+                            class="text-blue-600 font-bold"
+                        >
+                            Все
+                        </a>
+
+                    </div>
+
+                    <div class="space-y-6">
+
+                        {% for application in applications %}
+
+                            <div class="border border-slate-100 rounded-2xl p-6">
+
+                                <div class="flex items-center justify-between mb-5">
+
+                                    <div>
+
+                                        <div class="text-2xl font-black mb-2">
+
+                                            {{ application.speciality.title }}
+
+                                        </div>
+
+                                        <div class="text-slate-500">
+
+                                            {{ application.speciality.department.name }}
+
+                                        </div>
+
+                                    </div>
+
+                                    <span class="bg-blue-100 text-blue-700 px-5 py-2 rounded-xl font-bold">
+
+                                        {{ application.status }}
+
+                                    </span>
+
+                                </div>
+
+                                <div class="grid md:grid-cols-3 gap-5">
+
+                                    <div>
+
+                                        <div class="text-slate-500 mb-2">
+
+                                            Баллы
+
+                                        </div>
+
+                                        <div class="text-3xl font-black text-blue-600">
+
+                                            {{ application.score }}
+
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+
+                                        <div class="text-slate-500 mb-2">
+
+                                            GPA
+
+                                        </div>
+
+                                        <div class="text-3xl font-black">
+
+                                            {{ application.applicant.gpa }}
+
+                                        </div>
+
+                                    </div>
+
+                                    <div>
+
+                                        <div class="text-slate-500 mb-2">
+
+                                            PDF
+
+                                        </div>
+
+                                        <a
+                                            href="/admissions/pdf/{{ application.id }}/"
+                                            class="text-blue-600 font-bold"
+                                        >
+                                            Скачать
+                                        </a>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        {% empty %}
+
+                            <div class="text-center py-16">
+
+                                <div class="text-6xl mb-6">
+                                    📄
+                                </div>
+
+                                <div class="text-3xl font-black mb-4">
+
+                                    Нет заявлений
+
+                                </div>
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div>
+
+                <div class="bg-white rounded-[32px] shadow-lg p-10 mb-10">
+
+                    <h2 class="text-3xl font-black mb-8">
+
+                        Профиль
+
+                    </h2>
+
+                    {% if applicant %}
+
+                        <div class="space-y-5">
+
+                            <div>
+
+                                <div class="text-slate-500 mb-1">
+
+                                    ФИО
+
+                                </div>
+
+                                <div class="font-black text-xl">
+
+                                    {{ applicant.last_name }}
+                                    {{ applicant.first_name }}
+
+                                </div>
+
+                            </div>
+
+                            <div>
+
+                                <div class="text-slate-500 mb-1">
+
+                                    Телефон
+
+                                </div>
+
+                                <div class="font-bold">
+
+                                    {{ applicant.phone }}
+
+                                </div>
+
+                            </div>
+
+                            <div>
+
+                                <div class="text-slate-500 mb-1">
+
+                                    Школа
+
+                                </div>
+
+                                <div class="font-bold">
+
+                                    {{ applicant.school_name }}
+
+                                </div>
+
+                            </div>
+
+                            <div>
+
+                                <div class="text-slate-500 mb-1">
+
+                                    GPA
+
+                                </div>
+
+                                <div class="text-4xl font-black text-blue-600">
+
+                                    {{ applicant.gpa }}
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+                <div class="bg-white rounded-[32px] shadow-lg p-10">
+
+                    <h2 class="text-3xl font-black mb-8">
+
+                        Notifications
+
+                    </h2>
+
+                    <div class="space-y-5">
+
+                        {% for notification in notifications %}
+
+                            <div class="border border-slate-100 rounded-2xl p-5">
+
+                                <div class="font-black mb-2">
+
+                                    {{ notification.title }}
+
+                                </div>
+
+                                <div class="text-slate-500">
+
+                                    {{ notification.message }}
+
+                                </div>
+
+                            </div>
+
+                        {% empty %}
+
+                            <div class="text-slate-500">
+
+                                Нет уведомлений
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}
+FAQ KMEPT
+{% endblock %}
+
+{% block content %}
+
+<section class="py-24 bg-white min-h-screen">
+
+    <div class="max-w-5xl mx-auto px-4">
+
+        <div class="mb-16 text-center">
+
+            <h1 class="text-7xl font-black mb-6">
+
+                FAQ
+
+            </h1>
+
+            <p class="text-2xl text-slate-500">
+
+                Часто задаваемые вопросы
+
+            </p>
+
+        </div>
+
+        <div class="space-y-8">
+
+            {% for item in faq %}
+
+                <div class="bg-slate-50 rounded-[32px] p-10 shadow-lg">
+
+                    <h2 class="text-3xl font-black mb-5">
+
+                        {{ item.question }}
+
+                    </h2>
+
+                    <div class="text-xl text-slate-600 leading-relaxed">
+
+                        {{ item.answer }}
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

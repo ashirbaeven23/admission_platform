@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="py-16">
+
+    <div class="max-w-7xl mx-auto px-4">
+
+        <h1 class="text-6xl font-black mb-12">
+
+            {{ speciality.title }}
+
+        </h1>
+
+        <div class="bg-white rounded-[40px] shadow-xl overflow-hidden">
+
+            <table class="w-full">
+
+                <thead class="bg-slate-100">
+
+                    <tr>
+
+                        <th class="p-6 text-left">
+                            Место
+                        </th>
+
+                        <th class="p-6 text-left">
+                            Абитуриент
+                        </th>
+
+                        <th class="p-6 text-left">
+                            GPA
+                        </th>
+
+                        <th class="p-6 text-left">
+                            Баллы
+                        </th>
+
+                        <th class="p-6 text-left">
+                            Статус
+                        </th>
+
+                        <th class="p-6 text-left">
+                            Действие
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for item in ranking %}
+
+                        <tr class="border-t border-slate-100">
+
+                            <td class="p-6 font-black text-2xl">
+
+                                #{{ item.position }}
+
+                            </td>
+
+                            <td class="p-6">
+
+                                {{ item.application.applicant }}
+
+                            </td>
+
+                            <td class="p-6">
+
+                                {{ item.application.applicant.gpa }}
+
+                            </td>
+
+                            <td class="p-6 font-black text-blue-600">
+
+                                {{ item.application.score }}
+
+                            </td>
+
+                            <td class="p-6">
+
+                                {{ item.application.status }}
+
+                            </td>
+
+                            <td class="p-6">
+
+                                {% if item.application.status != 'enrolled' %}
+
+                                    <form
+                                        method="post"
+                                        action="/dashboard/enroll/{{ item.application.id }}/"
+                                    >
+
+                                        {% csrf_token %}
+
+                                        <button
+                                            type="submit"
+                                            class="bg-green-600 text-white px-6 py-3 rounded-2xl font-bold"
+                                        >
+                                            Зачислить
+                                        </button>
+
+                                    </form>
+
+                                {% else %}
+
+                                    <span class="bg-green-100 text-green-700 px-5 py-2 rounded-xl font-bold">
+
+                                        Зачислен
+
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

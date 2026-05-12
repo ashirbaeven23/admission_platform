@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Галерея KMEPT
+{% endblock %}
+
+{% block content %}
+
+<section class="py-24 bg-slate-100 min-h-screen">
+
+    <div class="max-w-7xl mx-auto px-4">
+
+        <div class="mb-16">
+
+            <h1 class="text-7xl font-black mb-6">
+
+                Галерея
+
+            </h1>
+
+            <p class="text-2xl text-slate-500">
+
+                Жизнь колледжа KMEPT
+
+            </p>
+
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+
+            {% for item in gallery %}
+
+                <div class="bg-white rounded-[40px] overflow-hidden shadow-xl">
+
+                    <div class="h-80 bg-gradient-to-r from-blue-600 to-indigo-700 flex items-center justify-center">
+
+                        <div class="text-8xl">
+                            🖼️
+                        </div>
+
+                    </div>
+
+                    <div class="p-8">
+
+                        <h2 class="text-3xl font-black">
+
+                            {{ item.title }}
+
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            {% empty %}
+
+                <div class="col-span-3 text-center py-24">
+
+                    <div class="text-7xl mb-6">
+                        🖼️
+                    </div>
+
+                    <div class="text-4xl font-black">
+
+                        Галерея пока пустая
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Поступление
+{% endblock %}
+
+{% block content %}
+
+<section class="py-24">
+
+    <div class="max-w-6xl mx-auto px-4">
+
+        <div class="bg-white rounded-[40px] shadow-2xl overflow-hidden">
+
+            <div class="bg-gradient-to-r from-blue-700 to-indigo-900 px-14 py-16 text-white">
+
+                <h1 class="text-6xl font-black mb-6">
+
+                    Онлайн поступление
+
+                </h1>
+
+                <p class="text-2xl text-blue-100">
+
+                    Заполните форму для подачи заявления
+
+                </p>
+
+            </div>
+
+            <form method="post" class="p-14">
+
+                {% csrf_token %}
+
+                <div class="mb-16">
+
+                    <h2 class="text-4xl font-black mb-10">
+
+                        Личная информация
+
+                    </h2>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+
+                        {{ profile_form.first_name }}
+                        {{ profile_form.last_name }}
+
+                        {{ profile_form.middle_name }}
+                        {{ profile_form.birth_date }}
+
+                        {{ profile_form.gender }}
+                        {{ profile_form.citizenship }}
+
+                        {{ profile_form.phone }}
+                        {{ profile_form.school_name }}
+
+                        <div class="md:col-span-2">
+                            {{ profile_form.address }}
+                        </div>
+
+                        {{ profile_form.graduation_year }}
+                        {{ profile_form.gpa }}
+
+                        {{ profile_form.passport_number }}
+                        {{ profile_form.iin }}
+
+                    </div>
+
+                </div>
+
+                <div class="mb-16">
+
+                    <h2 class="text-4xl font-black mb-10">
+
+                        Заявление
+
+                    </h2>
+
+                    <div class="space-y-8">
+
+                        {{ application_form.speciality }}
+
+                        {{ application_form.motivation_letter }}
+
+                    </div>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-12 py-6 rounded-2xl text-xl font-black transition"
+                >
+                    Подать заявление
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Мои заявления
+{% endblock %}
+
+{% block content %}
+
+<section class="py-24">
+
+    <div class="max-w-7xl mx-auto px-4">
+
+        <h1 class="text-6xl font-black mb-14">
+
+            Мои заявления
+
+        </h1>
+
+        <div class="grid gap-8">
+
+            {% for application in applications %}
+
+                <div class="bg-white rounded-[32px] shadow-lg p-8">
+
+                    <div class="flex items-center justify-between">
+
+                        <div>
+
+                            <h2 class="text-3xl font-black mb-3">
+
+                                {{ application.speciality.title }}
+
+                            </h2>
+
+                            <div class="text-slate-500">
+
+                                {{ application.speciality.department.name }}
+
+                            </div>
+
+                        </div>
+
+                        <div>
+
+                            <span class="bg-blue-100 text-blue-700 px-6 py-3 rounded-2xl font-bold">
+
+                                {{ application.status }}
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% empty %}
+
+                <div class="bg-white rounded-[32px] shadow-lg p-12 text-center">
+
+                    <div class="text-5xl mb-6">
+                        📄
+                    </div>
+
+                    <h2 class="text-3xl font-black mb-4">
+
+                        Нет заявлений
+
+                    </h2>
+
+                    <p class="text-slate-600 text-xl">
+
+                        Вы еще не подали заявление.
+
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Регистрация
+{% endblock %}
+
+{% block content %}
+
+<section class="py-24">
+
+    <div class="max-w-xl mx-auto px-4">
+
+        <div class="bg-white rounded-[40px] shadow-xl p-12">
+
+            <h1 class="text-5xl font-black mb-10">
+
+                Регистрация
+
+            </h1>
+
+            <form method="post" class="space-y-6">
+
+                {% csrf_token %}
+
+                <div>
+
+                    {{ form.username }}
+
+                </div>
+
+                <div>
+
+                    {{ form.email }}
+
+                </div>
+
+                <div>
+
+                    {{ form.password1 }}
+
+                </div>
+
+                <div>
+
+                    {{ form.password2 }}
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="w-full bg-blue-600 text-white py-5 rounded-2xl text-lg font-black"
+                >
+                    Создать аккаунт
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

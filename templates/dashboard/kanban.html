@@ -1,0 +1,185 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block dashboard_content %}
+
+<div class="mb-10">
+
+    <h1 class="text-5xl font-black mb-3">
+
+        Admission Pipeline
+
+    </h1>
+
+    <p class="text-xl text-slate-500">
+
+        Kanban workflow заявлений
+
+    </p>
+
+</div>
+
+<div class="grid grid-cols-4 gap-8">
+
+    <div class="bg-slate-200 rounded-[32px] p-6">
+
+        <h2 class="text-2xl font-black mb-6">
+
+            New
+
+        </h2>
+
+        <div class="space-y-5">
+
+            {% for application in new_applications %}
+
+                <div class="bg-white rounded-2xl p-5 shadow">
+
+                    <div class="font-black mb-2">
+
+                        {{ application.applicant }}
+
+                    </div>
+
+                    <div class="text-slate-500 mb-4">
+
+                        {{ application.speciality.title }}
+
+                    </div>
+
+                    <div class="text-blue-600 font-bold">
+
+                        {{ application.score }}
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <div class="bg-yellow-100 rounded-[32px] p-6">
+
+        <h2 class="text-2xl font-black mb-6">
+
+            Review
+
+        </h2>
+
+        <div class="space-y-5">
+
+            {% for application in review_applications %}
+
+                <div class="bg-white rounded-2xl p-5 shadow">
+
+                    <div class="font-black mb-2">
+
+                        {{ application.applicant }}
+
+                    </div>
+
+                    <div class="text-slate-500 mb-4">
+
+                        {{ application.speciality.title }}
+
+                    </div>
+
+                    <div class="text-blue-600 font-bold">
+
+                        {{ application.score }}
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <div class="bg-green-100 rounded-[32px] p-6">
+
+        <h2 class="text-2xl font-black mb-6">
+
+            Approved
+
+        </h2>
+
+        <div class="space-y-5">
+
+            {% for application in approved_applications %}
+
+                <div class="bg-white rounded-2xl p-5 shadow">
+
+                    <div class="font-black mb-2">
+
+                        {{ application.applicant }}
+
+                    </div>
+
+                    <div class="text-slate-500 mb-4">
+
+                        {{ application.speciality.title }}
+
+                    </div>
+
+                    <div class="text-blue-600 font-bold">
+
+                        {{ application.score }}
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <div class="bg-indigo-100 rounded-[32px] p-6">
+
+        <h2 class="text-2xl font-black mb-6">
+
+            Enrolled
+
+        </h2>
+
+        <div class="space-y-5">
+
+            {% for application in enrolled_applications %}
+
+                <div class="bg-white rounded-2xl p-5 shadow">
+
+                    <div class="font-black mb-2">
+
+                        {{ application.applicant }}
+
+                    </div>
+
+                    <div class="text-slate-500 mb-4">
+
+                        {{ application.speciality.title }}
+
+                    </div>
+
+                    <div class="text-blue-600 font-bold">
+
+                        {{ application.score }}
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

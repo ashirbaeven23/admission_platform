@@ -1,0 +1,110 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block dashboard_content %}
+
+<div class="mb-12">
+
+    <h1 class="text-5xl font-black mb-3">
+
+        Аналитика
+
+    </h1>
+
+    <p class="text-xl text-slate-500">
+
+        Статистика системы
+
+    </p>
+
+</div>
+
+<div class="grid grid-cols-2 gap-10 mb-10">
+
+    <div class="bg-white rounded-[32px] p-10 shadow-lg">
+
+        <h2 class="text-3xl font-black mb-8">
+
+            Популярность отделений
+
+        </h2>
+
+        <canvas id="departmentChart"></canvas>
+
+    </div>
+
+    <div class="bg-white rounded-[32px] p-10 shadow-lg">
+
+        <h2 class="text-3xl font-black mb-8">
+
+            Статистика системы
+
+        </h2>
+
+        <div class="space-y-6">
+
+            {% for department in departments %}
+
+                <div class="flex items-center justify-between">
+
+                    <div class="text-xl font-bold">
+
+                        {{ department.name }}
+
+                    </div>
+
+                    <div class="text-3xl font-black text-blue-600">
+
+                        {{ department.total_specialities }}
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const ctx = document.getElementById(
+    'departmentChart'
+);
+
+new Chart(ctx, {
+    type: 'bar',
+
+    data: {
+        labels: [
+            {% for department in departments %}
+                '{{ department.name }}',
+            {% endfor %}
+        ],
+
+        datasets: [{
+            label: 'Specialities',
+
+            data: [
+                {% for department in departments %}
+                    {{ department.total_specialities }},
+                {% endfor %}
+            ],
+
+            borderWidth: 2,
+            borderRadius: 20,
+        }]
+    },
+
+    options: {
+        responsive: true,
+    }
+});
+
+</script>
+
+{% endblock %}

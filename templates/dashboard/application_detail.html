@@ -1,0 +1,238 @@
+{% extends 'dashboard/base_dashboard.html' %}
+
+{% block dashboard_content %}
+
+<div class="mb-12">
+
+    <h1 class="text-5xl font-black mb-3">
+
+        Заявление абитуриента
+
+    </h1>
+
+    <p class="text-xl text-slate-500">
+
+        Детальная информация о заявлении
+
+    </p>
+
+</div>
+
+<div class="grid lg:grid-cols-3 gap-10">
+
+    <div class="lg:col-span-2">
+
+        <div class="bg-white rounded-[32px] shadow-lg p-10 mb-10">
+
+            <div class="flex items-center justify-between mb-10">
+
+                <div>
+
+                    <h2 class="text-4xl font-black mb-3">
+
+                        {{ application.applicant }}
+
+                    </h2>
+
+                    <div class="text-slate-500 text-lg">
+
+                        {{ application.speciality.title }}
+
+                    </div>
+
+                </div>
+
+                <span class="bg-blue-100 text-blue-700 px-6 py-3 rounded-2xl font-bold">
+
+                    {{ application.status }}
+
+                </span>
+
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+
+                <div>
+
+                    <div class="text-slate-500 mb-2">
+
+                        GPA
+
+                    </div>
+
+                    <div class="text-3xl font-black">
+
+                        {{ application.applicant.gpa }}
+
+                    </div>
+
+                </div>
+
+                <div>
+
+                    <div class="text-slate-500 mb-2">
+
+                        Баллы
+
+                    </div>
+
+                    <div class="text-3xl font-black text-blue-600">
+
+                        {{ application.score }}
+
+                    </div>
+
+                </div>
+
+                <div>
+
+                    <div class="text-slate-500 mb-2">
+
+                        Телефон
+
+                    </div>
+
+                    <div class="text-xl font-bold">
+
+                        {{ application.applicant.phone }}
+
+                    </div>
+
+                </div>
+
+                <div>
+
+                    <div class="text-slate-500 mb-2">
+
+                        Школа
+
+                    </div>
+
+                    <div class="text-xl font-bold">
+
+                        {{ application.applicant.school_name }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="bg-white rounded-[32px] shadow-lg p-10">
+
+            <h2 class="text-3xl font-black mb-8">
+
+                Мотивационное письмо
+
+            </h2>
+
+            <div class="text-lg leading-relaxed text-slate-700">
+
+                {{ application.motivation_letter|linebreaks }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div>
+
+        <div class="bg-white rounded-[32px] shadow-lg p-10 mb-10">
+
+            <h2 class="text-3xl font-black mb-8">
+
+                Изменить статус
+
+            </h2>
+
+            <form
+                method="post"
+                action="/dashboard/applications/{{ application.id }}/status/"
+                class="space-y-6"
+            >
+
+                {% csrf_token %}
+
+                <select
+                    name="status"
+                    class="w-full bg-slate-100 rounded-2xl px-6 py-5 outline-none"
+                >
+
+                    <option value="new">
+                        New
+                    </option>
+
+                    <option value="review">
+                        Review
+                    </option>
+
+                    <option value="approved">
+                        Approved
+                    </option>
+
+                    <option value="rejected">
+                        Rejected
+                    </option>
+
+                    <option value="enrolled">
+                        Enrolled
+                    </option>
+
+                </select>
+
+                <button
+                    type="submit"
+                    class="w-full bg-blue-600 text-white py-5 rounded-2xl font-black"
+                >
+                    Сохранить
+                </button>
+
+            </form>
+
+        </div>
+
+        <div class="bg-white rounded-[32px] shadow-lg p-10">
+
+            <h2 class="text-3xl font-black mb-8">
+
+                Действия
+
+            </h2>
+
+            <div class="space-y-5">
+
+                <a
+                    href="/admissions/pdf/{{ application.id }}/"
+                    class="block text-center bg-slate-900 text-white py-5 rounded-2xl font-bold"
+                >
+                    Скачать PDF
+                </a>
+
+                <form
+                    method="post"
+                    action="/dashboard/enroll/{{ application.id }}/"
+                >
+
+                    {% csrf_token %}
+
+                    <button
+                        type="submit"
+                        class="w-full bg-green-600 text-white py-5 rounded-2xl font-bold"
+                    >
+                        Зачислить
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

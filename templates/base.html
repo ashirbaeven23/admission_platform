@@ -1,0 +1,208 @@
+<!-- templates/base.html -->
+
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+
+        {% block title %}
+        KMEPT
+        {% endblock %}
+
+    </title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #f8fafc;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+        }
+
+    </style>
+
+</head>
+
+<body class="text-slate-800">
+
+    <header class="fixed top-0 left-0 w-full z-50">
+
+        <div class="glass border-b border-white/20 shadow-sm">
+
+            <div class="max-w-7xl mx-auto px-4">
+
+                <div class="flex items-center justify-between h-24">
+
+                    <a
+                        href="/"
+                        class="text-3xl font-black text-blue-700"
+                    >
+                        KMEPT
+                    </a>
+
+                    <nav class="hidden lg:flex items-center gap-8 text-lg">
+
+                        <a
+                            href="/"
+                            class="font-bold hover:text-blue-600 transition"
+                        >
+                            Главная
+                        </a>
+
+                        <a
+                            href="/education/specialities/"
+                            class="font-bold hover:text-blue-600 transition"
+                        >
+                            Специальности
+                        </a>
+
+                        <a
+                            href="/news/"
+                            class="font-bold hover:text-blue-600 transition"
+                        >
+                            Новости
+                        </a>
+
+                        <a
+                            href="/events/"
+                            class="font-bold hover:text-blue-600 transition"
+                        >
+                            События
+                        </a>
+
+                        <a
+                            href="/teachers/"
+                            class="font-bold hover:text-blue-600 transition"
+                        >
+                            Преподаватели
+                        </a>
+
+                        <a
+                            href="/gallery/"
+                            class="font-bold hover:text-blue-600 transition"
+                        >
+                            Галерея
+                        </a>
+
+                        <a
+                            href="/faq/"
+                            class="font-bold hover:text-blue-600 transition"
+                        >
+                            FAQ
+                        </a>
+
+                        <a
+                            href="/orders/enrollment/"
+                            class="font-bold hover:text-blue-600 transition"
+                        >
+                            Приказ
+                        </a>
+
+                    </nav>
+
+                    <div class="hidden lg:flex items-center gap-4">
+
+                        {% if user.is_authenticated %}
+
+                            {% if user.role == 'applicant' %}
+
+                                <a
+                                    href="/admissions/dashboard/"
+                                    class="bg-blue-600 text-white px-6 py-3 rounded-2xl font-bold hover:bg-blue-700 transition"
+                                >
+                                    Личный кабинет
+                                </a>
+
+                            {% else %}
+
+                                <a
+                                    href="/dashboard/"
+                                    class="bg-blue-600 text-white px-6 py-3 rounded-2xl font-bold hover:bg-blue-700 transition"
+                                >
+                                    CRM Панель
+                                </a>
+
+                            {% endif %}
+
+                            <a
+                                href="{% url 'accounts:logout' %}"
+                                class="bg-red-500 text-white px-6 py-3 rounded-2xl font-bold hover:bg-red-600 transition"
+                            >
+                                Выйти
+                            </a>
+
+                        {% else %}
+
+                            <a
+                                href="/accounts/login/"
+                                class="font-bold hover:text-blue-600 transition"
+                            >
+                                Вход
+                            </a>
+
+                            <a
+                                href="/accounts/register/"
+                                class="bg-blue-600 text-white px-6 py-3 rounded-2xl font-bold hover:bg-blue-700 transition"
+                            >
+                                Поступить
+                            </a>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <main class="pt-24">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+</body>
+
+</html>

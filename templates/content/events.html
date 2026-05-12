@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}
+События KMEPT
+{% endblock %}
+
+{% block content %}
+
+<section class="py-24 bg-slate-100 min-h-screen">
+
+    <div class="max-w-7xl mx-auto px-4">
+
+        <div class="mb-16">
+
+            <h1 class="text-7xl font-black mb-6">
+
+                События KMEPT
+
+            </h1>
+
+            <p class="text-2xl text-slate-500">
+
+                Мероприятия и активности колледжа
+
+            </p>
+
+        </div>
+
+        <div class="space-y-10">
+
+            {% for event in events %}
+
+                <div class="bg-white rounded-[40px] p-10 shadow-xl">
+
+                    <div class="grid lg:grid-cols-3 gap-10 items-center">
+
+                        <div class="h-64 rounded-3xl bg-gradient-to-r from-indigo-700 to-blue-600 flex items-center justify-center">
+
+                            <div class="text-8xl">
+                                📅
+                            </div>
+
+                        </div>
+
+                        <div class="lg:col-span-2">
+
+                            <div class="text-blue-600 font-black mb-4">
+
+                                {{ event.event_date|date:"d.m.Y H:i" }}
+
+                            </div>
+
+                            <h2 class="text-5xl font-black mb-5">
+
+                                {{ event.title }}
+
+                            </h2>
+
+                            <p class="text-xl text-slate-600 leading-relaxed mb-6">
+
+                                {{ event.description }}
+
+                            </p>
+
+                            <div class="text-lg font-bold">
+
+                                📍 {{ event.location }}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% empty %}
+
+                <div class="text-center py-24">
+
+                    <div class="text-7xl mb-6">
+                        📅
+                    </div>
+
+                    <div class="text-4xl font-black">
+
+                        Событий пока нет
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

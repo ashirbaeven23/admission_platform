@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Преподаватели KMEPT
+{% endblock %}
+
+{% block content %}
+
+<section class="py-24 bg-slate-100 min-h-screen">
+
+    <div class="max-w-7xl mx-auto px-4">
+
+        <div class="mb-16">
+
+            <h1 class="text-7xl font-black mb-6">
+
+                Преподаватели
+
+            </h1>
+
+            <p class="text-2xl text-slate-500">
+
+                Эксперты и специалисты KMEPT
+
+            </p>
+
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-10">
+
+            {% for teacher in teachers %}
+
+                <div class="bg-white rounded-[40px] overflow-hidden shadow-xl">
+
+                    <div class="h-72 bg-gradient-to-r from-blue-600 to-indigo-700 flex items-center justify-center">
+
+                        <div class="w-32 h-32 rounded-full bg-white/20 flex items-center justify-center text-white text-5xl font-black">
+
+                            {{ teacher.full_name|slice:":1" }}
+
+                        </div>
+
+                    </div>
+
+                    <div class="p-10">
+
+                        <h2 class="text-4xl font-black mb-4 leading-tight">
+
+                            {{ teacher.full_name }}
+
+                        </h2>
+
+                        <div class="text-blue-600 font-black text-xl mb-6">
+
+                            {{ teacher.position }}
+
+                        </div>
+
+                        <p class="text-slate-600 text-lg leading-relaxed mb-8">
+
+                            {{ teacher.bio }}
+
+                        </p>
+
+                        <div class="flex items-center justify-between">
+
+                            <div class="text-lg font-bold text-slate-700">
+
+                                Опыт:
+                                {{ teacher.experience }} лет
+
+                            </div>
+
+                            <div class="bg-blue-100 text-blue-700 px-5 py-2 rounded-xl font-black">
+
+                                KMEPT
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% empty %}
+
+                <div class="col-span-3 text-center py-24">
+
+                    <div class="text-7xl mb-6">
+                        👨‍🏫
+                    </div>
+
+                    <div class="text-4xl font-black mb-4">
+
+                        Преподаватели пока не добавлены
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

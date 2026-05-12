@@ -1,0 +1,169 @@
+[
+    {
+        "model": "education.department",
+        "pk": 1,
+        "fields": {
+            "name": "Информационные технологии",
+            "slug": "information-technology",
+            "description": "Подготовка IT специалистов",
+            "created_at": "2026-05-12T10:00:00Z"
+        }
+    },
+
+    {
+        "model": "education.department",
+        "pk": 2,
+        "fields": {
+            "name": "Экономика и бизнес",
+            "slug": "economics-business",
+            "description": "Современные экономические специальности",
+            "created_at": "2026-05-12T10:00:00Z"
+        }
+    },
+
+    {
+        "model": "education.speciality",
+        "pk": 1,
+        "fields": {
+            "department": 1,
+            "title": "Software Engineering",
+            "slug": "software-engineering",
+            "code": "SE-101",
+            "short_description": "Разработка программного обеспечения",
+            "full_description": "Backend, frontend, APIs и DevOps",
+            "duration": "3 года 10 месяцев",
+            "education_form": "Очная",
+            "budget_places": 50,
+            "paid_places": 25,
+            "tuition_fee": 180000,
+            "employment_rate": 95,
+            "is_active": true,
+            "created_at": "2026-05-12T10:00:00Z"
+        }
+    },
+
+    {
+        "model": "education.speciality",
+        "pk": 2,
+        "fields": {
+            "department": 1,
+            "title": "Cyber Security",
+            "slug": "cyber-security",
+            "code": "CS-202",
+            "short_description": "Информационная безопасность",
+            "full_description": "Linux, ethical hacking, network security",
+            "duration": "3 года 10 месяцев",
+            "education_form": "Очная",
+            "budget_places": 40,
+            "paid_places": 20,
+            "tuition_fee": 190000,
+            "employment_rate": 97,
+            "is_active": true,
+            "created_at": "2026-05-12T10:00:00Z"
+        }
+    },
+
+    {
+        "model": "education.speciality",
+        "pk": 3,
+        "fields": {
+            "department": 1,
+            "title": "Data Science",
+            "slug": "data-science",
+            "code": "DS-303",
+            "short_description": "AI и аналитика данных",
+            "full_description": "Python, machine learning и Big Data",
+            "duration": "3 года 10 месяцев",
+            "education_form": "Очная",
+            "budget_places": 35,
+            "paid_places": 15,
+            "tuition_fee": 200000,
+            "employment_rate": 96,
+            "is_active": true,
+            "created_at": "2026-05-12T10:00:00Z"
+        }
+    },
+
+    {
+        "model": "content.news",
+        "pk": 1,
+        "fields": {
+            "title": "Началась приемная кампания 2026",
+            "slug": "admission-2026",
+            "short_description": "Стартовал прием документов в KMEPT",
+            "content": "Абитуриенты могут подать документы онлайн через admission platform.",
+            "is_published": true,
+            "created_at": "2026-05-12T10:00:00Z"
+        }
+    },
+
+    {
+        "model": "content.news",
+        "pk": 2,
+        "fields": {
+            "title": "Открытие нового IT корпуса",
+            "slug": "new-it-campus",
+            "short_description": "KMEPT открывает новый IT кампус",
+            "content": "Современные аудитории и лаборатории для студентов.",
+            "is_published": true,
+            "created_at": "2026-05-11T10:00:00Z"
+        }
+    },
+
+    {
+        "model": "content.event",
+        "pk": 1,
+        "fields": {
+            "title": "День открытых дверей",
+            "slug": "open-day",
+            "description": "Презентация специальностей KMEPT",
+            "location": "Москва",
+            "event_date": "2026-06-01T12:00:00Z",
+            "created_at": "2026-05-10T10:00:00Z"
+        }
+    },
+
+    {
+        "model": "content.teacher",
+        "pk": 1,
+        "fields": {
+            "full_name": "Иванов Алексей Сергеевич",
+            "position": "Преподаватель Python и Django",
+            "bio": "Senior backend developer и преподаватель KMEPT",
+            "experience": 8,
+            "is_active": true
+        }
+    },
+
+    {
+        "model": "content.teacher",
+        "pk": 2,
+        "fields": {
+            "full_name": "Смирнова Анна Игоревна",
+            "position": "Преподаватель Data Science",
+            "bio": "Специалист по AI и машинному обучению",
+            "experience": 6,
+            "is_active": true
+        }
+    },
+
+    {
+        "model": "content.faq",
+        "pk": 1,
+        "fields": {
+            "question": "Как подать заявление?",
+            "answer": "Необходимо зарегистрироваться и заполнить онлайн форму.",
+            "order": 1
+        }
+    },
+
+    {
+        "model": "content.faq",
+        "pk": 2,
+        "fields": {
+            "question": "Можно ли подать документы онлайн?",
+            "answer": "Да, система поддерживает полностью онлайн поступление.",
+            "order": 2
+        }
+    }
+]

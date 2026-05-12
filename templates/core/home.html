@@ -1,0 +1,497 @@
+{% extends 'base.html' %}
+
+{% block title %}
+KMEPT — Колледж мировой экономики и передовых технологий
+{% endblock %}
+
+{% block content %}
+
+<section class="relative overflow-hidden bg-gradient-to-r from-blue-700 to-indigo-900 text-white">
+
+    <div class="absolute inset-0 opacity-10">
+
+        <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-4 py-36">
+
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+
+            <div>
+
+                <div class="bg-white/10 inline-flex px-6 py-3 rounded-full mb-8">
+
+                    KMEPT Admission 2026
+
+                </div>
+
+                <h1 class="text-7xl font-black leading-tight mb-10">
+
+                    КОЛЛЕДЖ МИРОВОЙ ЭКОНОМИКИ И ПЕРЕДОВЫХ ТЕХНОЛОГИЙ
+
+                </h1>
+
+                <p class="text-2xl text-blue-100 leading-relaxed mb-12">
+
+                    Современное образование, цифровые технологии и подготовка востребованных специалистов.
+
+                </p>
+
+                <div class="flex flex-wrap gap-6">
+
+                    <a
+                        href="/education/specialities/"
+                        class="bg-white text-blue-700 px-10 py-5 rounded-2xl text-lg font-black"
+                    >
+                        Специальности
+                    </a>
+
+                    <a
+                        href="/admissions/apply/"
+                        class="bg-blue-500 px-10 py-5 rounded-2xl text-lg font-black"
+                    >
+                        Подать заявление
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div>
+
+                <img
+                    src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1"
+                    class="rounded-[40px] shadow-2xl w-full"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="py-24 bg-white">
+
+    <div class="max-w-7xl mx-auto px-4">
+
+        <div class="grid lg:grid-cols-3 gap-8">
+
+            <div class="bg-slate-50 rounded-[32px] p-12 text-center">
+
+                <div class="text-7xl font-black text-blue-600 mb-5">
+
+                    {{ total_students }}+
+
+                </div>
+
+                <div class="text-2xl font-bold text-slate-700">
+
+                    Студентов
+
+                </div>
+
+            </div>
+
+            <div class="bg-slate-50 rounded-[32px] p-12 text-center">
+
+                <div class="text-7xl font-black text-blue-600 mb-5">
+
+                    {{ total_specialities }}
+
+                </div>
+
+                <div class="text-2xl font-bold text-slate-700">
+
+                    Специальностей
+
+                </div>
+
+            </div>
+
+            <div class="bg-slate-50 rounded-[32px] p-12 text-center">
+
+                <div class="text-7xl font-black text-blue-600 mb-5">
+
+                    {{ total_applications }}
+
+                </div>
+
+                <div class="text-2xl font-bold text-slate-700">
+
+                    Заявлений
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="py-24 bg-slate-100">
+
+    <div class="max-w-7xl mx-auto px-4">
+
+        <div class="flex flex-wrap items-center justify-between gap-6 mb-16">
+
+            <div>
+
+                <h2 class="text-6xl font-black mb-5">
+
+                    Популярные специальности
+
+                </h2>
+
+                <p class="text-2xl text-slate-500">
+
+                    Актуальные профессии будущего
+
+                </p>
+
+            </div>
+
+            <a
+                href="/education/specialities/"
+                class="text-blue-600 font-black text-xl"
+            >
+                Все специальности
+            </a>
+
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-10">
+
+            {% for speciality in specialities %}
+
+                <div class="bg-white rounded-[40px] overflow-hidden shadow-xl">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4"
+                        class="w-full h-72 object-cover"
+                    >
+
+                    <div class="p-10">
+
+                        <div class="text-blue-600 font-black mb-4">
+
+                            {{ speciality.code }}
+
+                        </div>
+
+                        <h3 class="text-4xl font-black mb-5">
+
+                            {{ speciality.title }}
+
+                        </h3>
+
+                        <p class="text-slate-600 text-lg leading-relaxed mb-8">
+
+                            {{ speciality.short_description|truncatechars:120 }}
+
+                        </p>
+
+                        <a
+                            href="/education/specialities/{{ speciality.slug }}/"
+                            class="block text-center bg-blue-600 text-white py-5 rounded-2xl font-black"
+                        >
+                            Подробнее
+                        </a>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="py-24 bg-blue-600 text-white">
+
+    <div class="max-w-7xl mx-auto px-4">
+
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+
+            <div>
+
+                <h2 class="text-6xl font-black mb-8">
+
+                    О KMEPT
+
+                </h2>
+
+                <p class="text-2xl leading-relaxed text-blue-100 mb-8">
+
+                    Колледж мировой экономики и передовых технологий — современное образовательное учреждение, готовящее специалистов в области IT, экономики и цифровых технологий.
+
+                </p>
+
+                <p class="text-xl leading-relaxed text-blue-100">
+
+                    Обучение построено на современных образовательных стандартах с практической подготовкой и цифровыми технологиями.
+
+                </p>
+
+            </div>
+
+            <div>
+
+                <div class="bg-white/10 rounded-[40px] p-12">
+
+                    <div class="grid grid-cols-2 gap-8">
+
+                        <div>
+
+                            <div class="text-6xl font-black mb-3">
+
+                                25+
+
+                            </div>
+
+                            <div class="text-blue-100">
+
+                                Специальностей
+
+                            </div>
+
+                        </div>
+
+                        <div>
+
+                            <div class="text-6xl font-black mb-3">
+
+                                3000+
+
+                            </div>
+
+                            <div class="text-blue-100">
+
+                                Студентов
+
+                            </div>
+
+                        </div>
+
+                        <div>
+
+                            <div class="text-6xl font-black mb-3">
+
+                                95%
+
+                            </div>
+
+                            <div class="text-blue-100">
+
+                                Трудоустройство
+
+                            </div>
+
+                        </div>
+
+                        <div>
+
+                            <div class="text-6xl font-black mb-3">
+
+                                15+
+
+                            </div>
+
+                            <div class="text-blue-100">
+
+                                IT партнеров
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="py-24 bg-white">
+
+    <div class="max-w-7xl mx-auto px-4">
+
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+
+            <div>
+
+                <img
+                    src="https://images.unsplash.com/photo-1562774053-701939374585"
+                    class="rounded-[40px] shadow-xl w-full"
+                >
+
+            </div>
+
+            <div>
+
+                <h2 class="text-6xl font-black mb-8">
+
+                    Почему выбирают KMEPT
+
+                </h2>
+
+                <div class="space-y-8">
+
+                    <div class="flex gap-5">
+
+                        <div class="text-5xl">
+                            🎓
+                        </div>
+
+                        <div>
+
+                            <div class="text-2xl font-black mb-2">
+
+                                Современное образование
+
+                            </div>
+
+                            <div class="text-slate-600 text-lg">
+
+                                Актуальные программы обучения и современные технологии.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="flex gap-5">
+
+                        <div class="text-5xl">
+                            💼
+                        </div>
+
+                        <div>
+
+                            <div class="text-2xl font-black mb-2">
+
+                                Трудоустройство
+
+                            </div>
+
+                            <div class="text-slate-600 text-lg">
+
+                                Высокий процент трудоустройства выпускников.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="flex gap-5">
+
+                        <div class="text-5xl">
+                            🚀
+                        </div>
+
+                        <div>
+
+                            <div class="text-2xl font-black mb-2">
+
+                                Карьера и практика
+
+                            </div>
+
+                            <div class="text-slate-600 text-lg">
+
+                                Практика и стажировки в IT и технологических компаниях.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="py-24 bg-slate-950 text-white">
+
+    <div class="max-w-7xl mx-auto px-4">
+
+        <div class="grid lg:grid-cols-2 gap-20">
+
+            <div>
+
+                <h2 class="text-6xl font-black mb-10">
+
+                    Контакты
+
+                </h2>
+
+                <div class="space-y-8 text-xl">
+
+                    <div>
+
+                        📍 Москва, Россия
+
+                    </div>
+
+                    <div>
+
+                        📞 +7 (495) 000-00-00
+
+                    </div>
+
+                    <div>
+
+                        ✉️ info@kmept.ru
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div>
+
+                <h2 class="text-6xl font-black mb-10">
+
+                    Начни карьеру уже сегодня
+
+                </h2>
+
+                <a
+                    href="/accounts/register/"
+                    class="inline-block bg-blue-600 px-10 py-5 rounded-2xl text-xl font-black"
+                >
+                    Подать заявление
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

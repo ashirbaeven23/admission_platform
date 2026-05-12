@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="py-24 bg-slate-100 min-h-screen">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="bg-white rounded-[40px] shadow-xl p-16">
+
+            <div class="text-center mb-16">
+
+                <div class="text-2xl font-bold mb-4">
+
+                    KMEPT
+
+                </div>
+
+                <h1 class="text-6xl font-black mb-6">
+
+                    ПРИКАЗ О ЗАЧИСЛЕНИИ
+
+                </h1>
+
+                <div class="text-slate-500 text-xl">
+
+                    2026 / 2027
+
+                </div>
+
+            </div>
+
+            <div class="overflow-x-auto">
+
+                <table class="w-full">
+
+                    <thead class="bg-slate-100">
+
+                        <tr>
+
+                            <th class="p-6 text-left">
+                                №
+                            </th>
+
+                            <th class="p-6 text-left">
+                                ФИО
+                            </th>
+
+                            <th class="p-6 text-left">
+                                Специальность
+                            </th>
+
+                            <th class="p-6 text-left">
+                                Основа
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for app in applications %}
+
+                            <tr class="border-t border-slate-100">
+
+                                <td class="p-6 font-bold">
+
+                                    {{ forloop.counter }}
+
+                                </td>
+
+                                <td class="p-6">
+
+                                    {{ app.applicant.last_name }}
+                                    {{ app.applicant.first_name }}
+
+                                </td>
+
+                                <td class="p-6">
+
+                                    {{ app.speciality.title }}
+
+                                </td>
+
+                                <td class="p-6">
+
+                                    {% if app.is_budget %}
+
+                                        <span class="text-green-600 font-bold">
+
+                                            БЮДЖЕТ
+
+                                        </span>
+
+                                    {% else %}
+
+                                        <span class="text-orange-500 font-bold">
+
+                                            ПЛАТНОЕ
+
+                                        </span>
+
+                                    {% endif %}
+
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
