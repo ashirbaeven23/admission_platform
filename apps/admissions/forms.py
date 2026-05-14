@@ -172,6 +172,7 @@ class ApplicationForm(
 class ApplicantDocumentForm(
     forms.ModelForm
 ):
+
     class Meta:
         model = ApplicantDocument
 
@@ -197,3 +198,33 @@ class ApplicantDocumentForm(
                 }
             ),
         }
+
+    def clean_file(self):
+
+        file = self.cleaned_data.get(
+            'file'
+        )
+
+        if file:
+
+            max_size = 5 * 1024 * 1024
+
+            if file.size > max_size:
+
+                raise forms.ValidationError(
+                    'Размер файла не должен превышать 5 MB'
+                )
+
+            allowed_types = [
+                'application/pdf',
+                'image/jpeg',
+                'image/png',
+            ]
+
+            if file.content_type not in allowed_types:
+
+                raise forms.ValidationError(
+                    'Допустимы только PDF, JPG и PNG файлы'
+                )
+
+        return file

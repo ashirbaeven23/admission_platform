@@ -294,11 +294,20 @@ class ApplicationPDFView(
                 applicant__user=request.user
             )
 
-        else:
+        elif request.user.role in [
+            'admin',
+            'manager'
+        ]:
 
             application = get_object_or_404(
                 Application,
                 pk=pk
+            )
+
+        else:
+
+            return redirect(
+                'core:home'
             )
 
         return generate_application_pdf(

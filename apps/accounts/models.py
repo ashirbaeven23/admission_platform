@@ -51,6 +51,13 @@ class User(AbstractUser):
             default=False
         )
     )
+    @property
+    def is_manager(self):
+        return self.role == self.MANAGER
+
+    @property
+    def is_applicant(self):
+        return self.role == self.APPLICANT
 
     def save(self, *args, **kwargs):
         if self.role == self.ADMIN:
@@ -66,6 +73,9 @@ class User(AbstractUser):
             self.can_enroll_students = True
 
         super().save(*args, **kwargs)
+    class Meta:
+            verbose_name = 'User'
+            verbose_name_plural = 'Users'
 
     def __str__(self):
         return self.username

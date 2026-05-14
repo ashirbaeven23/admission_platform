@@ -1,38 +1,79 @@
 # Admission Platform
-Автоматизированная информационная система учёта абитуриентов колледжа на Django.
+
+АИС учёта абитуриентов колледжа на Django.
+
+## Функциональность
+
+- регистрация пользователей;
+- подача заявлений;
+- загрузка документов;
+- управление специальностями;
+- рейтинг абитуриентов;
+- система зачисления;
+- PDF генерация заявлений;
+- административная панель.
 
 ## Технологии
+
 - Python 3
-- Django
+- Django 5
 - SQLite
-- Tailwind CSS
+- HTML/CSS
+- Bootstrap/Tailwind
 - ReportLab
-- openpyxl
 
-## Установка
+## Установка проекта
+
+```bash
 git clone https://github.com/ashirbaeven23/admission_platform.git
-cd admission_platform
+```
 
-## Создание виртуального окружения:
+## Создание виртуального окружения
+
+```bash
 python -m venv venv
+```
 
-## Активация:
+## Активация окружения
+
 Windows:
+
+```bash
 venv\Scripts\activate
-Linux/macOS:
-source venv/bin/activate
+```
 
-## Установка зависимостей:
+## Установка зависимостей
+
+```bash
 pip install -r requirements.txt
+```
 
-## Миграции:
+## Миграции базы данных
+
+```bash
 python manage.py migrate
+```
 
-## Загрузка тестовых данных:
-python manage.py loaddata fixtures/test_data.json
+## Создание суперпользователя
 
-## Создание суперпользователя:
+```bash
 python manage.py createsuperuser
+```
 
-## Запуск проекта:
+## Загрузка тестовых данных
+
+```bash
+python manage.py loaddata fixtures/test_data.json
+```
+
+## Запуск проекта
+
+```bash
 python manage.py runserver
+```
+
+## Запуск тестов
+
+```bash
+python manage.py test apps.admissions.tests
+```

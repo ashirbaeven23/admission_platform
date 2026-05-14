@@ -27,7 +27,8 @@ def calculate_rankings():
                 speciality=speciality
             ).order_by(
                 '-exam_score',
-                '-applicant__gpa'
+                '-applicant__gpa',
+                'created_at'
             )
         )
 
@@ -35,8 +36,19 @@ def calculate_rankings():
 
         for app in speciality_apps:
 
+            gpa = float(
+                app.applicant.gpa
+            )
+
+            if gpa < 0:
+                gpa = 0
+
+            if gpa > 5:
+                gpa = 5
+
+            # GPA переводится в 100-балльную систему
             gpa_score = int(
-                app.applicant.gpa * 20
+                gpa * 20
             )
 
             total = (
@@ -51,11 +63,13 @@ def calculate_rankings():
             if ranking <= speciality.budget_places:
 
                 app.is_budget = True
+
                 app.is_recommended = True
 
             else:
 
                 app.is_budget = False
+
                 app.is_recommended = False
 
             app.save()

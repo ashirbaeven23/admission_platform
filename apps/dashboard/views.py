@@ -249,11 +249,8 @@ class UpdateApplicationStatusView(
         )
 
         ALLOWED_STATUSES = [
-            'new',
-            'review',
-            'approved',
-            'rejected',
-            'enrolled'
+            choice[0]
+            for choice in Application.STATUS_CHOICES
         ]
 
         if status not in ALLOWED_STATUSES:

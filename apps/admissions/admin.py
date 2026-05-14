@@ -28,15 +28,25 @@ class ApplicantProfileAdmin(
 class ApplicationAdmin(
     admin.ModelAdmin
 ):
+
     list_display = (
         'applicant',
         'speciality',
         'status',
-        'score',
+        'exam_score',
+        'total_score',
+        'ranking_position',
+        'is_budget',
         'created_at',
     )
 
     list_filter = (
         'status',
         'speciality',
+        'is_budget',
+    )
+
+    search_fields = (
+        'applicant__first_name',
+        'applicant__last_name',
     )
