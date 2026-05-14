@@ -236,7 +236,9 @@ class UpdateApplicationStatusView(
     ManagerRequiredMixin,
     View
 ):
+
     def post(self, request, pk):
+
         application = get_object_or_404(
             Application,
             pk=pk
@@ -245,6 +247,21 @@ class UpdateApplicationStatusView(
         status = request.POST.get(
             'status'
         )
+
+        ALLOWED_STATUSES = [
+            'new',
+            'review',
+            'approved',
+            'rejected',
+            'enrolled'
+        ]
+
+        if status not in ALLOWED_STATUSES:
+
+            return redirect(
+                'dashboard:application_detail',
+                pk=application.pk
+            )
 
         application.status = status
 

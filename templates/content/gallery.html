@@ -12,13 +12,13 @@
 
         <div class="mb-16">
 
-            <h1 class="text-7xl font-black mb-6">
+            <h1 class="text-5xl md:text-6xl font-black mb-6">
 
                 Галерея
 
             </h1>
 
-            <p class="text-2xl text-slate-500">
+            <p class="text-xl text-slate-500">
 
                 Жизнь колледжа KMEPT
 
@@ -26,27 +26,48 @@
 
         </div>
 
-        <div class="grid lg:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
             {% for item in gallery %}
 
-                <div class="bg-white rounded-[40px] overflow-hidden shadow-xl">
+                <div class="bg-white rounded-[40px] overflow-hidden shadow-xl hover:-translate-y-2 transition duration-300">
 
-                    <div class="h-80 bg-gradient-to-r from-blue-600 to-indigo-700 flex items-center justify-center">
+                    {% if item.image %}
 
-                        <div class="text-8xl">
-                            🖼️
+                        <img
+                            src="{{ item.image.url }}"
+                            class="w-full h-80 object-cover"
+                        >
+
+                    {% else %}
+
+                        <div class="h-80 bg-gradient-to-r from-blue-600 to-indigo-700 flex items-center justify-center">
+
+                            <div class="text-8xl">
+                                🖼️
+                            </div>
+
                         </div>
 
-                    </div>
+                    {% endif %}
 
                     <div class="p-8">
 
-                        <h2 class="text-3xl font-black">
+                        <h2 class="text-3xl font-black mb-4">
 
                             {{ item.title }}
 
                         </h2>
+
+                        {% if item.description %}
+
+                            <p class="text-slate-600 leading-relaxed">
+
+                                {{ item.description }}
+
+                            </p>
+
+                        {% endif %}
 
                     </div>
 
@@ -60,11 +81,17 @@
                         🖼️
                     </div>
 
-                    <div class="text-4xl font-black">
+                    <div class="text-4xl font-black mb-4">
 
                         Галерея пока пустая
 
                     </div>
+
+                    <p class="text-slate-500 text-xl">
+
+                        Добавьте фотографии через Django Admin
+
+                    </p>
 
                 </div>
 

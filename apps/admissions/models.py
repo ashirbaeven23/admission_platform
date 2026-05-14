@@ -5,7 +5,9 @@ from django.db import models
 from apps.education.models import (
     Speciality
 )
-
+from django.core.validators import (
+    FileExtensionValidator
+)
 
 class ApplicantProfile(models.Model):
     user = models.OneToOneField(
@@ -145,6 +147,7 @@ class Application(models.Model):
 
     def __str__(self):
         return f'{self.applicant} - {self.speciality}'
+    
 class Enrollment(models.Model):
     application = models.OneToOneField(
         Application,
@@ -163,6 +166,7 @@ class Enrollment(models.Model):
 
     def __str__(self):
         return self.enrollment_number
+    
 class ApplicantDocument(models.Model):
     PASSPORT = 'passport'
     CERTIFICATE = 'certificate'
@@ -186,8 +190,18 @@ class ApplicantDocument(models.Model):
     )
 
     file = models.FileField(
-        upload_to='documents/'
-    )
+    upload_to='documents/',
+    validators=[
+        FileExtensionValidator(
+            allowed_extensions=[
+                'pdf',
+                'jpg',
+                'jpeg',
+                'png'
+            ]
+        )
+    ]
+)
 
     uploaded_at = models.DateTimeField(
         auto_now_add=True
@@ -199,6 +213,7 @@ class ApplicantDocument(models.Model):
 
     def __str__(self):
         return self.document_type
+    
 class ActivityLog(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,

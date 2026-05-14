@@ -12,7 +12,6 @@ from .services.activity_service import (
     create_activity,
     create_notification,
 )
-
 from .models import (
     ApplicantDocument,
     Notification,
@@ -25,12 +24,6 @@ from .services.pdf_service import (
 from .services.notification_service import (
     send_application_notification
 )
-
-from django.shortcuts import (
-    redirect,
-    render,
-)
-
 from django.views import View
 
 from .forms import (
@@ -41,6 +34,11 @@ from .forms import (
 from .models import (
     ApplicantProfile,
     Application,
+)
+from django.shortcuts import (
+    redirect,
+    render,
+    get_object_or_404,
 )
 
 
@@ -286,17 +284,22 @@ class ApplicationPDFView(
     View
 ):
 
-    def get(
-        self,
-        request,
-        pk
-    ):
+    def get(self, request, pk):
 
-        application = (
-            Application.objects.get(
+        if request.user.role == 'applicant':
+
+            application = get_object_or_404(
+                Application,
+                pk=pk,
+                applicant__user=request.user
+            )
+
+        else:
+
+            application = get_object_or_404(
+                Application,
                 pk=pk
             )
-        )
 
         return generate_application_pdf(
             application
