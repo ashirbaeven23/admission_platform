@@ -19,6 +19,7 @@ from apps.admissions.models import (
     ActivityLog,
     Notification,
 )
+
 from apps.accounts.mixins import (
     DashboardAccessMixin
 )
@@ -46,6 +47,7 @@ from apps.accounts.mixins import (
 from apps.admissions.models import (
     ApplicantProfile,
     Application,
+    ApplicantDocument,
 )
 
 from apps.education.models import (
@@ -223,11 +225,18 @@ class ApplicationDetailView(
             pk=pk
         )
 
+        documents = (
+    ApplicantDocument.objects.filter(
+        applicant=application.applicant
+    )
+)
+
         return render(
             request,
             self.template_name,
             {
-                'application': application
+                'application': application,
+                'documents': documents,
             }
         )
 
@@ -462,3 +471,36 @@ class EnrollmentOrderView(
         )
 
         return context
+class UpdateExamScoreView(
+    ManagerRequiredMixin,
+    View
+):
+
+    def post(self, request, pk):
+
+        application = get_object_or_404(
+            Application,
+            pk=pk
+        )
+
+        exam_score = request.POST.get(
+            'exam_score'
+        )
+
+        try:
+
+            application.exam_score = int(
+                exam_score
+            )
+
+            application.save()
+            calculate_rankings()
+
+        except:
+
+            pass
+
+        return redirect(
+            'dashboard:application_detail',
+            pk=application.pk
+        )

@@ -60,17 +60,20 @@ def calculate_rankings():
 
             app.ranking_position = ranking
 
-            if ranking <= speciality.budget_places:
+            MIN_BUDGET_SCORE = 150
+
+            if (
+                ranking <= speciality.budget_places
+                and total >= MIN_BUDGET_SCORE
+            ):
 
                 app.is_budget = True
-
                 app.is_recommended = True
 
             else:
 
                 app.is_budget = False
-
-                app.is_recommended = False
+                app.is_recommended = True
 
             app.save()
 

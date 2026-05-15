@@ -12,6 +12,8 @@ from .views import (
     RankingView,
     ExportExcelView,
     EnrollmentOrderView,
+    UpdateExamScoreView
+
 )
 
 app_name = 'dashboard'
@@ -81,5 +83,10 @@ urlpatterns = [
         EnrollmentOrderView.as_view(),
         name='enrollment_order'
     ),
+    path(
+    'applications/<int:pk>/score/',
+    UpdateExamScoreView.as_view(),
+    name='update_score'
+),
 
 ]

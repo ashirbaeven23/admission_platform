@@ -1,5 +1,5 @@
 from django import forms
-
+import os
 from .models import (
     ApplicantDocument,
     ApplicantProfile,
@@ -225,6 +225,23 @@ class ApplicantDocumentForm(
 
                 raise forms.ValidationError(
                     'Допустимы только PDF, JPG и PNG файлы'
+                )
+
+            allowed_extensions = [
+                '.pdf',
+                '.jpg',
+                '.jpeg',
+                '.png',
+            ]
+
+            ext = os.path.splitext(
+                file.name
+            )[1].lower()
+
+            if ext not in allowed_extensions:
+
+                raise forms.ValidationError(
+                    'Недопустимый формат файла'
                 )
 
         return file
